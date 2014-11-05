@@ -1,0 +1,11 @@
+db:
+  image: postgres
+web:
+  build: ./docker/django
+  volumes:
+      - "./project:/code"
+  ports:
+    - "8000:8000"
+  links:
+    - db
+  command: python project/manage.py runserver 0.0.0.0:8000
